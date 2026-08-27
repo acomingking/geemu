@@ -60,8 +60,8 @@
     if (next.x < 0 || next.x >= COLS || next.y < 0 || next.y >= ROWS) {
       return gameOver();
     }
-    // Self collision
-    if (snake.some(s => s.x === next.x && s.y === next.y)) {
+    // Self collision (exclude tail tip — it will move away this tick)
+    if (snake.slice(0, snake.length - 1).some(s => s.x === next.x && s.y === next.y)) {
       return gameOver();
     }
 
